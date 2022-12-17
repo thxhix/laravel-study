@@ -23,7 +23,7 @@ Route::get('/contact', function () {
 
 Route::get('/posts/{id}', function ($id) {
     return 'We see Post with id: ' . $id;
-})->name('posts.show');
+})->where(['id' => '[0-9]+'])->name('posts.show');
 
 Route::get('/posts-recent/{date?}', function ($date = '01-01-2022') {
     return 'List of posts with date ' . $date;

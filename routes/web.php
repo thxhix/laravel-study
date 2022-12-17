@@ -13,16 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home.index');
-})->name('home.index');
-
-Route::get('/contact', function () {
-    return view('home.contact');
-})->name('home.contact');
+Route::view('/', 'home.index')->name('home.index');
+Route::view('/contact', 'home.contact')->name('home.contact');
 
 Route::get('/posts/{id}', function ($id) {
-    return view('post.index', ['id' => $id]);
+
+    $example = [
+        1 => [
+            'title' => 'Post about Laravel Migrations',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias veniam expedita vero blanditiis, fuga, sed ratione libero tempore ad beatae inventore, quos iste est similique accusamus ea molestias dolorem labore.'
+        ],
+        2 => [
+            'title' => 'Post about Apache start on MacOS',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias veniam expedita vero blanditiis, fuga, sed ratione libero tempore ad beatae inventore, quos iste est similique accusamus ea molestias dolorem labore.'
+        ]
+    ];
+
+    abort_if(!isset($example[$id]), 404);
+
+    return view('post.show', ['id' => $id, 'post' => $example[$id]]);
 })->where(['id' => '[0-9]+'])->name('posts.show');
 
 Route::get('/posts-recent/{date?}', function ($date = '01-01-2022') {

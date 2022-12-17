@@ -14,17 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index');
 })->name('home.index');
 
 Route::get('/contact', function () {
-    return '<h1>Contact Page</h1>';
+    return view('home.contact');
 })->name('home.contact');
 
 Route::get('/posts/{id}', function ($id) {
-    return 'We see Post with id: ' . $id;
+    return view('post.index', ['id' => $id]);
 })->where(['id' => '[0-9]+'])->name('posts.show');
 
 Route::get('/posts-recent/{date?}', function ($date = '01-01-2022') {
-    return 'List of posts with date ' . $date;
+    return view('post.recent-list', ['date' => $date]);
 })->name('posts.recent');

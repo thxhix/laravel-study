@@ -15,4 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home.index');
+
+Route::get('/contact', function () {
+    return '<h1>Contact Page</h1>';
+})->name('home.contact');

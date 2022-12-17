@@ -20,3 +20,11 @@ Route::get('/', function () {
 Route::get('/contact', function () {
     return '<h1>Contact Page</h1>';
 })->name('home.contact');
+
+Route::get('/posts/{id}', function ($id) {
+    return 'We see Post with id: ' . $id;
+})->name('posts.show');
+
+Route::get('/posts-recent/{date?}', function ($date = '01-01-2022') {
+    return 'List of posts with date ' . $date;
+})->name('posts.recent');

@@ -50,3 +50,25 @@ Route::get('/posts', function () use ($posts) {
 Route::get('/posts-recent/{date?}', function ($date = '01-01-2022') {
     return view('post.recent-list', ['date' => $date]);
 })->name('posts.recent');
+
+Route::get('/fun/responses', function () use ($posts) {
+    return response($posts, 201)
+        ->header('Content-Type', 'application/json')
+        ->cookie('dummy', 'custom cookie', 3600);
+});
+
+Route::get('/fun/redirect', function () {
+    return redirect('/contact');
+});
+
+Route::get('/fun/back', function () {
+    return back();
+});
+
+Route::get('/fun/named', function () {
+    return redirect()->route('home.index');
+});
+
+Route::get('/fun/away', function () {
+    return redirect('https://youtube.com');
+});

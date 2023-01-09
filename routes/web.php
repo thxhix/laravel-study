@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,7 +38,9 @@ $posts = [
 ];
 
 Route::prefix('/posts')->name('posts.')->group(function () use ($posts) {
-    Route::get('/', function () use ($posts) {
+    Route::get('/', function (Request $request) use ($posts) {
+        // dd($request->all());
+        dd($request->query('page', 1));
         return view('post.index', ['posts' => $posts]);
     })->name('index');
 

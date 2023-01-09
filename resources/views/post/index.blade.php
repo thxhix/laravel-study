@@ -9,15 +9,11 @@
         <p style="font-size: 12px; opacity: .45; margin-bottom: 25px">Всего: {{ count($posts) }}</p>
     @endif
 
-    @if (count($posts) > 0)
+    {{-- @each('post.partials.post', $posts, 'post') --}}
 
+    @if (count($posts) > 0)
         @foreach ($posts as $key => $post)
-            @if ($loop->odd)
-                <div>{{ $key }}. {{ $post['title'] }}</div>
-            @else
-                <div style="background: #eee">{{ $key }}. {{ $post['title'] }}</div>
-            @endif
-            <hr>
+            @include('post.partials.post', [])
         @endforeach
     @else
         <p>Нет доступных постов!</p>

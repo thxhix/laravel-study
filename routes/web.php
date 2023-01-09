@@ -36,13 +36,13 @@ $posts = [
     ],
 ];
 
-Route::get('/posts/{id}', function ($id) use($posts) {
+Route::get('/posts/{id}', function ($id) use ($posts) {
     abort_if(!isset($posts[$id]), 404);
 
     return view('post.show', ['id' => $id, 'post' => $posts[$id]]);
 })->where(['id' => '[0-9]+'])->name('posts.show');
 
-Route::get('/posts', function () use($posts) {
+Route::get('/posts', function () use ($posts) {
     return view('post.index', ['posts' => $posts]);
 })->name('posts.index');
 

@@ -72,3 +72,11 @@ Route::get('/fun/named', function () {
 Route::get('/fun/away', function () {
     return redirect('https://youtube.com');
 });
+
+Route::get('/fun/json', function () use ($posts) {
+    return response()->json($posts);
+});
+
+Route::get('/fun/download', function () use ($posts) {
+    return response()->download(public_path('favicon.ico'), 'fav.ico', []);
+});

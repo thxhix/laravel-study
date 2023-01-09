@@ -36,47 +36,49 @@ $posts = [
     ],
 ];
 
-Route::get('/posts/{id}', function ($id) use ($posts) {
-    abort_if(!isset($posts[$id]), 404);
+Route::prefix('/posts')->name('posts.')->group(function () use ($posts) {
+    Route::get('/', function () use ($posts) {
+        return view('post.index', ['posts' => $posts]);
+    })->name('index');
 
-    return view('post.show', ['id' => $id, 'post' => $posts[$id]]);
-})->where(['id' => '[0-9]+'])->name('posts.show');
-
-Route::get('/posts', function () use ($posts) {
-    return view('post.index', ['posts' => $posts]);
-})->name('posts.index');
-
-
-Route::get('/posts-recent/{date?}', function ($date = '01-01-2022') {
-    return view('post.recent-list', ['date' => $date]);
-})->name('posts.recent');
-
-Route::get('/fun/responses', function () use ($posts) {
-    return response($posts, 201)
-        ->header('Content-Type', 'application/json')
-        ->cookie('dummy', 'custom cookie', 3600);
+    Route::get('{id}', function ($id) use ($posts) {
+        abort_if(!isset($posts[$id]), 404);
+        return view('post.show', ['id' => $id, 'post' => $posts[$id]]);
+    })->where(['id' => '[0-9]+'])->name('show');
 });
 
-Route::get('/fun/redirect', function () {
-    return redirect('/contact');
-});
 
-Route::get('/fun/back', function () {
-    return back();
-});
 
-Route::get('/fun/named', function () {
-    return redirect()->route('home.index');
-});
 
-Route::get('/fun/away', function () {
-    return redirect('https://youtube.com');
-});
+// Fun routes
+Route::prefix('/fun')->name('fun.')->group(function () use ($posts) {
+    Route::get('responses', function () use ($posts) {
+        return response($posts, 201)
+            ->header('Content-Type', 'application/json')
+            ->cookie('dummy', 'custom cookie', 3600);
+    })->name('response');
 
-Route::get('/fun/json', function () use ($posts) {
-    return response()->json($posts);
-});
+    Route::get('redirect', function () {
+        return redirect('/contact');
+    })->name('redirect');
 
-Route::get('/fun/download', function () use ($posts) {
-    return response()->download(public_path('favicon.ico'), 'fav.ico', []);
+    Route::get('back', function () {
+        return back();
+    })->name('back');
+
+    Route::get('named', function () {
+        return redirect()->route('home.index');
+    })->name('named');
+
+    Route::get('away', function () {
+        return redirect('https://youtube.com');
+    })->name('away');
+
+    Route::get('json', function () use ($posts) {
+        return response()->json($posts);
+    })->name('json');
+
+    Route::get('download', function () {
+        return response()->download(public_path('favicon.ico'), 'fav.ico', []);
+    })->name('download');
 });

@@ -20,10 +20,13 @@ Route::get('/posts/{id}', function ($id) {
 
     $example = [
         1 => [
+            'is_new' => false,
+            'has_comments' => true,
             'title' => 'Post about Laravel Migrations',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias veniam expedita vero blanditiis, fuga, sed ratione libero tempore ad beatae inventore, quos iste est similique accusamus ea molestias dolorem labore.'
         ],
         2 => [
+            'is_new' => true,
             'title' => 'Post about Apache start on MacOS',
             'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias veniam expedita vero blanditiis, fuga, sed ratione libero tempore ad beatae inventore, quos iste est similique accusamus ea molestias dolorem labore.'
         ]

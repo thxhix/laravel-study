@@ -39,10 +39,9 @@ $posts = [
 
 Route::prefix('/posts')->name('posts.')->group(function () use ($posts) {
     Route::get('/', function (Request $request) use ($posts) {
-        // dd($request->all());
-        dd($request->query('page', 1));
+        
         return view('post.index', ['posts' => $posts]);
-    })->name('index');
+    })->name('index')->middleware('auth');
 
     Route::get('{id}', function ($id) use ($posts) {
         abort_if(!isset($posts[$id]), 404);
@@ -50,7 +49,9 @@ Route::prefix('/posts')->name('posts.')->group(function () use ($posts) {
     })->where(['id' => '[0-9]+'])->name('show');
 });
 
-
+Route::get('/login', function() {
+    return 'You are not a User!';
+})->name('login');
 
 
 // Fun routes

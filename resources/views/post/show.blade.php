@@ -4,6 +4,10 @@
 
 @section('content')
 
+    <div class="back">
+        <a href="/posts/">Вернуться назад</a>
+    </div>
+
     @if ($post['is_new'])
         <p>Это новый пост!</p>
     @elseif(!$post['is_new'])

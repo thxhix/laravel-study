@@ -6,6 +6,28 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
+    private $posts = [
+        1 => [
+            'id' => 1,
+            'is_new' => false,
+            'has_comments' => true,
+            'title' => 'Post about Laravel Migrations',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias veniam expedita vero blanditiis, fuga, sed ratione libero tempore ad beatae inventore, quos iste est similique accusamus ea molestias dolorem labore.'
+        ],
+        2 => [
+            'id' => 2,
+            'is_new' => true,
+            'title' => 'Post about Apache start on MacOS',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias veniam expedita vero blanditiis, fuga, sed ratione libero tempore ad beatae inventore, quos iste est similique accusamus ea molestias dolorem labore.'
+        ],
+        3 => [
+            'id' => 3,
+            'is_new' => false,
+            'has_comments' => true,
+            'title' => 'Post about Laravel Routes',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias veniam expedita vero blanditiis, fuga, sed ratione libero tempore ad beatae inventore, quos iste est similique accusamus ea molestias dolorem labore.'
+        ],
+    ];
 
     /**
      * Display a listing of the resource.
@@ -14,27 +36,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = [
-            1 => [
-                'is_new' => false,
-                'has_comments' => true,
-                'title' => 'Post about Laravel Migrations',
-                'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias veniam expedita vero blanditiis, fuga, sed ratione libero tempore ad beatae inventore, quos iste est similique accusamus ea molestias dolorem labore.'
-            ],
-            2 => [
-                'is_new' => true,
-                'title' => 'Post about Apache start on MacOS',
-                'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias veniam expedita vero blanditiis, fuga, sed ratione libero tempore ad beatae inventore, quos iste est similique accusamus ea molestias dolorem labore.'
-            ],
-            3 => [
-                'is_new' => false,
-                'has_comments' => true,
-                'title' => 'Post about Laravel Routes',
-                'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias veniam expedita vero blanditiis, fuga, sed ratione libero tempore ad beatae inventore, quos iste est similique accusamus ea molestias dolorem labore.'
-            ],
-        ];
-
-        return view('post.index', ['posts' => $posts]);
+        return view('post.index', ['posts' => $this->posts]);
     }
 
     /**
@@ -66,27 +68,9 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $posts = [
-            1 => [
-                'is_new' => false,
-                'has_comments' => true,
-                'title' => 'Post about Laravel Migrations',
-                'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias veniam expedita vero blanditiis, fuga, sed ratione libero tempore ad beatae inventore, quos iste est similique accusamus ea molestias dolorem labore.'
-            ],
-            2 => [
-                'is_new' => true,
-                'title' => 'Post about Apache start on MacOS',
-                'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias veniam expedita vero blanditiis, fuga, sed ratione libero tempore ad beatae inventore, quos iste est similique accusamus ea molestias dolorem labore.'
-            ],
-            3 => [
-                'is_new' => false,
-                'has_comments' => true,
-                'title' => 'Post about Laravel Routes',
-                'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias veniam expedita vero blanditiis, fuga, sed ratione libero tempore ad beatae inventore, quos iste est similique accusamus ea molestias dolorem labore.'
-            ],
-        ];
-        abort_if(!isset($posts[$id]), 404);
-        return view('post.show', ['id' => $id, 'post' => $posts[$id]]);
+
+        abort_if(!isset($this->posts[$id]), 404);
+        return view('post.show', ['id' => $id, 'post' => $this->posts[$id]]);
     }
 
     /**

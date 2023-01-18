@@ -47,10 +47,10 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = BlogPost::all()->where('id', $id);
-        
+        $post = BlogPost::all()->where('id', $id)->toArray();
+
         abort_if(!isset($post), 404);
-        return view('post.show', ['id' => $id, 'post' => $post]);
+        return view('post.show', ['id' => $id, 'post' => $post[0]]);
     }
 
     /**

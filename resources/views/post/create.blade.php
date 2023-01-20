@@ -6,7 +6,8 @@
     <a href="/posts">Назад</a>
     <h1 style="margin-bottom: 5px">Создать пост: </h1>
 
-    <form action="/posts/store">
+    <form action="{{ route('posts.store') }}" method="POST">
+        @csrf
         <input type="text" name="title">
         <textarea name="content" cols="30" rows="10"></textarea>
 

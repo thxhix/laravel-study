@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class PostsController extends Controller
 {
@@ -14,8 +15,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-
-        $posts = BlogPost::orderBy('created_at', 'asc')->take(8)->get();
+        $posts = BlogPost::orderBy('created_at', 'asc')->get();
         return view('post.index', ['posts' => $posts]);
     }
 
@@ -37,7 +37,12 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        if (!empty($request->title) && !empty($request->content)) {
+            $result = BlogPost::create(['title' => $request->title, 'content' => $request->content]);
+            return Redirect::route('posts.show', ['post' => $result->id]);
+        } else {
+            return Redirect::route('posts.create');
+        }
     }
 
     /**

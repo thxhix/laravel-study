@@ -25,7 +25,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('post.create', []);
     }
 
     /**
@@ -36,7 +36,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -49,7 +49,7 @@ class PostsController extends Controller
     {
         $post = BlogPost::all()->where('id', $id)->toArray();
 
-        abort_if(!isset($post), 404);
+        abort_if(!isset($post[0]), 404);
         return view('post.show', ['id' => $id, 'post' => $post[0]]);
     }
 

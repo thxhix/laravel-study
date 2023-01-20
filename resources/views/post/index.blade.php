@@ -4,9 +4,11 @@
 
 @section('content')
     <h1 style="margin-bottom: 5px">Список постов: </h1>
+    <a href="/posts/create">Создать пост!</a>
 
     @if (count($posts) > 0)
         <p style="font-size: 12px; opacity: .45; margin-bottom: 25px">Всего: {{ count($posts) }}</p>
+       
     @endif
 
     {{-- @each('post.partials.post', $posts, 'post') --}}

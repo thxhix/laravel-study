@@ -42,9 +42,9 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact')
 
 Route::get('/single', AboutController::class);
 
-Route::resource('posts', PostsController::class)->only(['index', 'show']);
+Route::resource('posts', PostsController::class);
 
-Route::get('/login', function() {
+Route::get('/login', function () {
     return 'You are not a User!';
 })->name('login');
 

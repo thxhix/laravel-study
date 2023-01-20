@@ -4,13 +4,16 @@
 
 @section('content')
     <a href="/posts">Назад</a>
-    <h1 style="margin-bottom: 5px">Создать пост: </h1>
+    <h1 style="margin-bottom: 5px">Изменить пост: </h1>
 
-    <form action="{{ route('posts.store') }}" method="POST">
+    <form action="{{ route('posts.update', ['post' => $post->id ]) }}" method="POST">
         @csrf
+        @method('PUT')
+        
+
         @include('post.partials.form')
 
-        <button type="submit">Добавить</button>
+        <button type="submit">Изменить</button>
     </form>
 
     <style>

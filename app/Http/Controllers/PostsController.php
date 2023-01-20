@@ -40,11 +40,10 @@ class PostsController extends Controller
     {
         $valid = $request->validated();
         $result = BlogPost::create($valid);
-
         if ($result) {
             $request->session()->flash('status', 'true');
+            $request->session()->flash('status_text', 'Пост успешно добавлен');
         }
-
         return Redirect::route('posts.show', ['post' => $result->id]);
     }
 
@@ -67,7 +66,8 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = BlogPost::findOrFail($id);
+        return view('post.edit', ['post' => $post]);
     }
 
     /**
@@ -77,9 +77,17 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StorePost $request, $id)
     {
-        //
+        $post = BlogPost::findOrFail($id);
+
+        $valid = $request->validated();
+        $result = $post->update($valid);
+        if ($result) {
+            $request->session()->flash('status', 'true');
+            $request->session()->flash('status_text', 'Пост успешно обновлен');
+        }
+        return Redirect::route('posts.show', $id);
     }
 
     /**
@@ -90,6 +98,7 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        BlogPost::findOrFail($id)->delete();
+        return Redirect::route('posts.index', $id);
     }
 }

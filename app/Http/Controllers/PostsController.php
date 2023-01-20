@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePost;
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -35,14 +36,16 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePost $request)
     {
-        if (!empty($request->title) && !empty($request->content)) {
-            $result = BlogPost::create(['title' => $request->title, 'content' => $request->content]);
-            return Redirect::route('posts.show', ['post' => $result->id]);
-        } else {
-            return Redirect::route('posts.create');
+        $valid = $request->validated();
+        $result = BlogPost::create($valid);
+
+        if ($result) {
+            $request->session()->flash('status', 'true');
         }
+
+        return Redirect::route('posts.show', ['post' => $result->id]);
     }
 
     /**

@@ -8,8 +8,16 @@
 
     <form action="{{ route('posts.store') }}" method="POST">
         @csrf
-        <input type="text" name="title">
-        <textarea name="content" cols="30" rows="10"></textarea>
+        <input type="text" name="title" value="{{ old('title') }}">
+        <textarea name="content" cols="30" rows="10">{{ old('content') }}</textarea>
+
+        @if ($errors->all())
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
 
         <button type="submit">Добавить</button>
     </form>

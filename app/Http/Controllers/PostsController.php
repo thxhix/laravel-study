@@ -14,7 +14,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = BlogPost::all();
+
+        $posts = BlogPost::orderBy('created_at', 'asc')->take(8)->get();
         return view('post.index', ['posts' => $posts]);
     }
 
@@ -47,10 +48,7 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = BlogPost::all()->where('id', $id)->toArray();
-
-        abort_if(!isset($post[0]), 404);
-        return view('post.show', ['id' => $id, 'post' => $post[0]]);
+        return view('post.show', ['id' => $id, 'post' => BlogPost::findOrFail($id)]);
     }
 
     /**

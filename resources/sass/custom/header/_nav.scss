@@ -1,0 +1,14 @@
+.header-nav{
+    
+    list-style: none;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    &__item{
+        margin-right: 25px;
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+}

@@ -6,16 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laravel Learn - @yield('title')</title>
+
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 
 <body>
-    <header>
-        <ul>
-            <li><a href="/">Главная</a></li>
-            <li><a href="/posts">Посты</a></li>
+    <header class="container">
+        <ul class="header-nav">
+            <li class="header-nav__item"><a href="/">Главная</a></li>
+            <li class="header-nav__item"><a href="/posts">Посты</a></li>
         </ul>
     </header>
-    <main>@yield('content')</main>
+    <main class="container">@yield('content')</main>
 </body>
 
 </html>

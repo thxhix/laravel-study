@@ -8,7 +8,7 @@
         @include('post.partials.back', [])
 
         @if (session('status') == 'true')
-            <div style="background: green">{{ session('status_text') }}</div>
+            <div class="post-detail__success">✅ {{ session('status_text') }}</div>
         @endif
 
         <div class="post-detail-content">
@@ -18,12 +18,12 @@
 
 
         <div class="post-detail-actions">
-            <a class="post-detail-actions__edit" href="/posts/{{ $id }}/edit">Редактировать</a>
+            <a class="post-detail-actions__edit" href="/posts/{{ $id }}/edit">📝 Редактировать</a>
 
             <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button class="post-detail-actions__delete" type="submit">Delete post</button>
+                <button class="post-detail-actions__delete" type="submit">🗑 Удалить пост</button>
             </form>
         </div>
 

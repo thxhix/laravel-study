@@ -7,7 +7,7 @@
         <div class="post-list__title">
             <h1 style="margin-bottom: 5px">Список постов: </h1>
             <div class="post-list__create">
-                <a href="/posts/create">Создать пост!</a>
+                <a href="/posts/create">📝 Создать пост!</a>
             </div>
         </div>
 
@@ -26,7 +26,5 @@
                 <p>Нет доступных постов!</p>
             @endif
         </div>
-
     </div>
-
 @endsection

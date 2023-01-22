@@ -1,0 +1,43 @@
+.post-form {
+    margin: 30px 0;
+    width: 400px;
+
+    * {
+        margin-bottom: 15px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__input {
+        width: 100%;
+        display: block;
+        outline: none;
+
+        border-radius: 3px;
+    }
+
+    &__textarea {
+        width: 100%;
+        display: block;
+        outline: none;
+
+        border-radius: 3px;
+    }
+
+    &__submit{
+        outline: none;
+        border: none;
+
+        border-radius: 3px;
+        padding: 7px 12px;
+        background-color: var(--success);
+        color: white;
+
+        transition: .3s ease-in-out;
+
+        &:hover{
+            background-color: green;
+        }
+    }
+}

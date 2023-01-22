@@ -7,6 +7,13 @@
             margin-bottom: 30px;
         }
     }
+    &__success{
+        color: white;
+        background: var(--success);
+
+        border-radius: 3px;
+        padding: 7px 12px;
+    }
 
     &-actions {
         display: flex;

@@ -25,7 +25,7 @@ class PostsController extends Controller
         $valid = $request->validated();
         $result = BlogPost::create($valid);
         if ($result) {
-            $request->session()->flash('status_text', 'Пост успешно добавлен');
+            $request->session()->flash('status_text', '📑 Пост успешно добавлен');
         }
         return Redirect::route('posts.show', ['post' => $result->id]);
     }
@@ -48,7 +48,7 @@ class PostsController extends Controller
         $valid = $request->validated();
         $result = $post->update($valid);
         if ($result) {
-            $request->session()->flash('status_text', 'Пост успешно обновлен');
+            $request->session()->flash('status_text', '🔖 Пост успешно обновлен');
         }
         return Redirect::route('posts.show', $id);
     }

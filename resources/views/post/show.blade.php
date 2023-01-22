@@ -7,7 +7,7 @@
     <div class="post-detail">
         @include('post.partials.back', [])
 
-        @if (session('status') == 'true')
+        @if (session('status_text'))
             <div class="post-detail__success">✅ {{ session('status_text') }}</div>
         @endif
 

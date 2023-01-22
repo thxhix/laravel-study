@@ -1,0 +1,53 @@
+.post-detail {
+    &-content {
+        margin: 40px 0;
+        &__title {
+            font-size: 34px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+    }
+
+    &-actions {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        & > * {
+            margin-right: 15px;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        &__edit {
+            border-radius: 3px;
+            padding: 7px 12px;
+
+            background-color: var(--success);
+            color: var(--white);
+
+            &:hover {
+                color: white;
+                background: green;
+                text-decoration: none;
+            }
+        }
+
+        &__delete {
+            border-radius: 3px;
+            padding: 7px 12px;
+
+            background-color: var(--red);
+            color: var(--white);
+            outline: none;
+            border: none;
+
+            &:hover {
+                color: white;
+                background: rgb(174, 1, 1);
+                text-decoration: none;
+            }
+        }
+    }
+}

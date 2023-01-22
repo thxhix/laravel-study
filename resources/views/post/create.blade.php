@@ -3,7 +3,7 @@
 @section('title', 'Создать пост')
 
 @section('content')
-    <a href="/posts">Назад</a>
+    @include('post.partials.back', [])
     <h1 style="margin-bottom: 5px">Создать пост: </h1>
 
     <form action="{{ route('posts.store') }}" method="POST">

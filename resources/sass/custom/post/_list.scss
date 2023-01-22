@@ -1,0 +1,43 @@
+.post-list {
+    &__title {
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__create {
+        a {
+            border-radius: 3px;
+            padding: 7px 12px;
+
+            background-color: orange;
+            color: white;
+
+            transition: .3s ease-in-out;
+
+            &:hover{
+                text-decoration: none;
+                background-color: darken(orange, 5%);
+            }
+        }
+    }
+
+    &-container{
+        &__item{
+            display: block;
+            padding: 10px 25px;
+
+            transition: .3s ease-in-out;
+
+            &.post-list-container__item--odd{
+                display: block;
+                background-color: #d9d9d9;
+            }
+
+            &:hover{
+                background: rgb(213, 213, 255);
+            }
+        }
+    }
+}

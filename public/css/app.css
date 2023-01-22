@@ -9557,6 +9557,31 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
+.back {
+  margin: 15px 0;
+}
+.back a {
+  padding: 5px 0;
+  position: relative;
+  display: inline-block;
+  color: #111;
+  transition: 0.3s ease-in-out;
+}
+.back a:hover {
+  color: blueviolet;
+  text-decoration: none;
+}
+.back a:hover::before {
+  color: blueviolet;
+  padding-right: 5px;
+}
+.back a::before {
+  content: "←";
+  padding-right: 10px;
+  color: inherit;
+  transition: 0.3s ease-in-out;
+}
+
 .header-nav {
   list-style: none;
   display: flex;
@@ -9573,4 +9598,78 @@ a.text-dark:hover, a.text-dark:focus {
 header {
   margin-bottom: 50px;
   padding: 30px 0;
+}
+
+.post-detail-content {
+  margin: 40px 0;
+}
+.post-detail-content__title {
+  font-size: 34px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+.post-detail-actions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.post-detail-actions > * {
+  margin-right: 15px;
+}
+.post-detail-actions > *:last-child {
+  margin-right: 0;
+}
+.post-detail-actions__edit {
+  border-radius: 3px;
+  padding: 7px 12px;
+  background-color: var(--success);
+  color: var(--white);
+}
+.post-detail-actions__edit:hover {
+  color: white;
+  background: green;
+  text-decoration: none;
+}
+.post-detail-actions__delete {
+  border-radius: 3px;
+  padding: 7px 12px;
+  background-color: var(--red);
+  color: var(--white);
+  outline: none;
+  border: none;
+}
+.post-detail-actions__delete:hover {
+  color: white;
+  background: rgb(174, 1, 1);
+  text-decoration: none;
+}
+
+.post-list__title {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.post-list__create a {
+  border-radius: 3px;
+  padding: 7px 12px;
+  background-color: orange;
+  color: white;
+  transition: 0.3s ease-in-out;
+}
+.post-list__create a:hover {
+  text-decoration: none;
+  background-color: #e69500;
+}
+.post-list-container__item {
+  display: block;
+  padding: 10px 25px;
+  transition: 0.3s ease-in-out;
+}
+.post-list-container__item.post-list-container__item--odd {
+  display: block;
+  background-color: #d9d9d9;
+}
+.post-list-container__item:hover {
+  background: rgb(213, 213, 255);
 }

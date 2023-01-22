@@ -1,0 +1,32 @@
+.back {
+    margin: 15px 0;
+    a {
+        padding: 5px 0;
+        position: relative;
+        display: inline-block;
+
+        color: #111;
+
+        transition: .3s ease-in-out;
+
+        &:hover{
+            color: blueviolet;
+            text-decoration: none;
+
+            &::before{
+                color: blueviolet;
+                padding-right: 5px;
+            }
+        }
+
+        &::before {
+            content: "←";
+            padding-right: 10px;
+            color: inherit;
+
+            transition: .3s ease-in-out;
+        }
+    }
+
+   
+}

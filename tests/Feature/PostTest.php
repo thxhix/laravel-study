@@ -18,16 +18,13 @@ class PostTest extends TestCase
 
     public function testCreate1BlogPostAndSeeThis()
     {
-        $post = new BlogPost();
-        $post->title = 'UnitTest Post';
-        $post->content = 'Lorem ipsum dolor sit amet.';
-        $post->save();
+        $post = $this->createDummyPost();
 
         $response = $this->get('/posts');
-        $response->assertSeeText('UnitTest Post');
+        $response->assertSeeText('Some post title');
 
         $this->assertDatabaseHas('blog_posts', [
-            'title' => 'UnitTest Post',
+            'title' => 'Some post title',
             'content' => 'Lorem ipsum dolor sit amet.'
         ]);
     }
@@ -58,5 +55,48 @@ class PostTest extends TestCase
 
         $this->assertEquals($msg['title'][0], 'The title must be at least 3 characters.');
         $this->assertEquals($msg['content'][0], 'The content must be at least 10 characters.');
+    }
+
+    public function testUpdatePostSuccess()
+    {
+        $post = $this->createDummyPost();
+
+        $this->assertDatabaseHas('blog_posts', $post->toArray());
+
+        $data = [
+            'title' => 'New post data',
+            'content' => 'Lorem ipsum, dolor sit amet consectetur adipisicing.'
+        ];
+
+        $this->put("/posts/{$post->id}", $data)
+            ->assertStatus(302)
+            ->assertSessionHas('status_text');
+
+        $this->assertDatabaseHas('blog_posts', $data);
+        $this->assertDatabaseMissing('blog_posts', ['title' => 'Some post title', 'content' => 'Lorem ipsum dolor sit amet.']);
+    }
+
+    public function testPostDelete()
+    {
+        $post = $this->createDummyPost();
+
+        $this->assertDatabaseHas('blog_posts', $post->toArray());
+
+        $this->delete("/posts/{$post->id}")
+            ->assertStatus(302);
+
+        $this->assertDatabaseMissing('blog_posts', $post->toArray());
+    }
+
+
+
+    private function createDummyPost()
+    {
+        $post = new BlogPost();
+        $post->title = 'Some post title';
+        $post->content = 'Lorem ipsum dolor sit amet.';
+        $post->save();
+
+        return $post;
     }
 }

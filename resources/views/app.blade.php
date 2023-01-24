@@ -16,6 +16,7 @@
         <ul class="header-nav">
             <li class="header-nav__item"><a href="/">Главная</a></li>
             <li class="header-nav__item"><a href="/posts">Посты</a></li>
+            <li class="header-nav__item"><a href="/contact">Контакты</a></li>
         </ul>
     </header>
     <main class="container">@yield('content')</main>

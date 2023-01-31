@@ -1,4 +1,6 @@
 @if ($loop->odd)
+
+
     <div class="post-list-container__item post-list-container__item--odd">
         <div class="post-block">
             <a href="/posts/{{ $post['id'] }}" class="post-block-left">
@@ -8,6 +10,11 @@
             </a>
 
             <div class="post-block-right">
+                @if ($post->comments_count)
+                    <span style="margin-right:30px">Отзывы: {{ $post->comments_count }}</span>
+                @else
+                    <span style="margin-right:30px">Нет отзывов!</span>
+                @endif
                 <a href="/posts/{{ $post['id'] }}/edit" class="post-block-right__action">
                     <span title="Редактировать">✏️</span>
                 </a>
@@ -24,6 +31,11 @@
             </a>
 
             <div class="post-block-right">
+                @if ($post->comments_count)
+                    <span style="margin-right:30px">Отзывы: {{ $post->comments_count }}</span>
+                @else
+                    <span style="margin-right:30px">Нет отзывов!</span>
+                @endif
                 <a href="/posts/{{ $post['id'] }}/edit" class="post-block-right__action">
                     <span title="Редактировать">✏️</span>
                 </a>

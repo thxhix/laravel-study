@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\BlogPost;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 
@@ -16,7 +17,8 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'content' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel, perspiciatis.'
+            'content' => $this->faker->realText(100),
+            'blog_post_id' => random_int(1, BlogPost::all()->count())
         ];
     }
 }

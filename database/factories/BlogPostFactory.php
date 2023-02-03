@@ -14,8 +14,8 @@ class BlogPostFactory extends Factory
     public function definition()
     {
         return [
-            'title' => 'Lorem ipsum dolor sit.',
-            'content' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure eum alias, quidem natus error adipisci?'
+            'title' => $this->faker->name,
+            'content' => $this->faker->realText(200)
         ];
     }
 }

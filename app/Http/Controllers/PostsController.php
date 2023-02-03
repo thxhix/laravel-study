@@ -11,25 +11,14 @@ use Illuminate\Support\Facades\Redirect;
 
 class PostsController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
+    }
+
     public function index()
     {
-
-        // DB::connection()->enableQueryLog();
-
-        // $posts = BlogPost::all();
-
-        // foreach ($posts as $post) {
-        //     foreach ($post->comments as $comment) {
-        //         echo '<pre>';
-        //         print_r($comment);
-        //         echo '</pre>';
-        //     }
-        // }
-        // dd(DB::getQueryLog());
-
         $posts = BlogPost::withCount('comments')->get();
-
-
         return view('post.index', ['posts' => $posts]);
     }
 
